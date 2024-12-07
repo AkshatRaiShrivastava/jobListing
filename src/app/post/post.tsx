@@ -63,7 +63,7 @@ export default function Post() {
     };
 
     try {
-      const response = await axios.post(`http://localhost:8080/post`, payload, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/post`, payload, {
         headers: {
           "Content-Type": "application/json",
         },
