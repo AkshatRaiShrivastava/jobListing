@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
@@ -6,23 +5,17 @@ import { useRouter } from "next/navigation";
 import Post from "../post/post";
 
 export default function Home() {
-  require('dotenv').config();
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  module.exports = {
-    env: {
-      PORT: process.env.PORT,
-      // SECRET_API_KEY: process.env.SECRET_API_KEY,
-    },
-  };
+  
   // Fetch posts based on input value
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
           inputValue
-            ? `http://localhost:8080/posts/${inputValue}` // Search API
-            : `http://localhost:8080/posts` // Fetch all posts
+            ? `${process.env.NEXT_PUBLIC_HOST}/posts/${inputValue}` // Search API
+            : `${process.env.NEXT_PUBLIC_HOST}/posts` // Fetch all posts
         );
         setPosts(response.data);
         console.log(response.data);
@@ -30,19 +23,17 @@ export default function Home() {
         console.error("Error fetching posts:", error);
       }
     };
-
+    
     fetchPosts();
   }, [inputValue]);
+  console.log(process.env.NEXT_PUBLIC_PORT)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
-  
   return (
     <main className="flex flex-col items-center px-15 py-10 ">
-      
-      
       <div className="w-full px-10 m-36">
         <form>
           <label
@@ -86,7 +77,7 @@ export default function Home() {
       </div>
 
       <h1 className="justify-center items-center mb-20 text-neutral-100 text-2xl lg:text-4xl">
-        There are {posts?.length} job listing(s)
+        There are {posts?.length} job listing(s) 
       </h1>
       <div className="flex flex-wrap gap-5 w-full items-center justify-center">
         {posts.map((post, index) => (
