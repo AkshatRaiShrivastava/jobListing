@@ -23,7 +23,7 @@ export default function Post() {
     techs: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -53,7 +53,7 @@ export default function Post() {
   //     alert("Failed to submit data.");
   //   }
   // };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     // Convert techs string into an array
