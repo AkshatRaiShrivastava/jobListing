@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
@@ -5,9 +6,15 @@ import { useRouter } from "next/navigation";
 import Post from "../post/post";
 
 export default function Home() {
+  require('dotenv').config();
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
+  module.exports = {
+    env: {
+      PORT: process.env.PORT,
+      // SECRET_API_KEY: process.env.SECRET_API_KEY,
+    },
+  };
   // Fetch posts based on input value
   useEffect(() => {
     const fetchPosts = async () => {
@@ -15,7 +22,7 @@ export default function Home() {
         const response = await axios.get(
           inputValue
             ? `http://localhost:8080/posts/${inputValue}` // Search API
-            : "http://localhost:8080/posts" // Fetch all posts
+            : `http://localhost:8080/posts` // Fetch all posts
         );
         setPosts(response.data);
         console.log(response.data);
