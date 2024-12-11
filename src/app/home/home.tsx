@@ -53,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col items-center px-15 py-10 ">
+    <main className="flex flex-col items-center px-25 py-10 ">
       <div className="w-full px-10 m-36">
         <form>
           <label
@@ -85,7 +85,7 @@ export default function Home() {
               value={inputValue}
               onChange={handleInputChange}
               id="default-search"
-              className="lg:w-3/4 w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline hover-outline-0"
+              className="lg:w-full w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline hover-outline-0"
               placeholder="Search jobs here..."
               required
             />

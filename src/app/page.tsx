@@ -14,7 +14,7 @@ export default function Main() {
   };
 
   return (
-    <main className="justify-center items-center flex flex-col p-10">
+    <main className="flex flex-col justify-center items-center p-10">
       <div className="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
       <Button className="bg-neutral-500 " onClick={toggleComponent}>
         {showComponentOne ? "Post" : "Find"} a job
