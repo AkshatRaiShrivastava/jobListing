@@ -8,15 +8,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/sonner";
 import axios from "axios";
 import { log } from "console";
 import { SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function Post() {
   // const [inputValue, setInputValue] = useState("");
 
   const [formData, setFormData] = useState({
+    
     profile: "",
     desc: "",
     exp: "",
@@ -69,7 +72,9 @@ export default function Post() {
         },
       });
       console.log("Response Data:", response.data);
-      alert("Data submitted successfully!");
+      // alert("Data submitted successfully!");
+      toast("Job posted successfully !")
+
     } catch (error) {
       console.error("Error posting data:", error);
       alert("Failed to submit data.");
@@ -163,6 +168,7 @@ export default function Post() {
           Submit
         </button>
       </form>
+      <Toaster />
     </main>
   );
 }

@@ -4,26 +4,30 @@ import { Button } from "../../components/ui/button";
 import { useRouter } from "next/navigation";
 import Post from "../post/post";
 import { number } from "zod";
+import { toast } from "sonner"
+import { Toaster } from "@/components/ui/sonner";
+
 
 export default function Home() {
   
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(
+        inputValue
+          ? `${process.env.NEXT_PUBLIC_HOST}/posts/${inputValue}` // Search API
+          : `${process.env.NEXT_PUBLIC_HOST}/posts` // Fetch all posts
+      );
+      setPosts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
   // Fetch posts based on input value
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(
-          inputValue
-            ? `${process.env.NEXT_PUBLIC_HOST}/posts/${inputValue}` // Search API
-            : `${process.env.NEXT_PUBLIC_HOST}/posts` // Fetch all posts
-        );
-        setPosts(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
+    
     
     fetchPosts();
   }, [inputValue]);
@@ -31,6 +35,21 @@ export default function Home() {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
+  };
+  
+  const deletePost = async (id: string) => {
+    try {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/post/${id}`);
+      console.log(response.data);// Update state to reflect the deletion
+      if(response.status == 200){
+        fetchPosts()
+        toast("Post has been deleted.")
+
+      }
+        
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
   };
 
   return (
@@ -98,9 +117,12 @@ export default function Home() {
                 </div>
               ))}
             </ul>
+            <Button className="bg-red-500 mt-10 hover:bg-red-300" onClick={()=>deletePost(post.id)}>Delete</Button>
           </div>
         ))}
       </div>
+      <Toaster />
     </main>
+    
   );
 }
