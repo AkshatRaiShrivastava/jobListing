@@ -100,7 +100,7 @@ export default function Home() {
         There are {posts?.length} job listing(s) 
       </h1>
       <div className="flex flex-wrap gap-5 w-full items-center justify-center">
-        {posts.map((post: { index: Key | null | undefined; profile: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; desc: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; exp: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; techs: any[]; }, index: any) => (
+        {posts.map((post: {index: Key | null | undefined; id:string;profile: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; desc: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; exp: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; techs: any[]; }, index: any) => (
           <div
             className=" text-sm w-3/4 lg:w-auto cursor-pointer hover:scale-105 duration-500 p-10 flex-col rounded-3xl border border-neutral-500"
             key={post.index}
