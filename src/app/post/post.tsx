@@ -14,8 +14,14 @@ import { log } from "console";
 import { SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import https from "https";
 
 export default function Post() {
+  const axiosInstance = axios.create({
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false, // Disable SSL certificate verification
+    }),
+  });
   // const [inputValue, setInputValue] = useState("");
 
   const [formData, setFormData] = useState({
@@ -66,7 +72,7 @@ export default function Post() {
     };
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/post`, payload, {
+      const response = await axiosInstance.post(`${process.env.NEXT_PUBLIC_HOST}/post`, payload, {
         headers: {
           "Content-Type": "application/json",
         },

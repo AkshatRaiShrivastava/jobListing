@@ -6,15 +6,20 @@ import Post from "../post/post";
 import { number } from "zod";
 import { toast } from "sonner"
 import { Toaster } from "@/components/ui/sonner";
-
+import https from "https";
 
 export default function Home() {
+  const axiosInstance = axios.create({
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false, // Disable SSL certificate verification
+    }),
+  });
   
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(
+      const response = await axiosInstance.get(
         inputValue
           ? `${process.env.NEXT_PUBLIC_HOST}/posts/${inputValue}` // Search API
           : `${process.env.NEXT_PUBLIC_HOST}/posts` // Fetch all posts
