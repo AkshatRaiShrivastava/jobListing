@@ -24,4 +24,4 @@ const nextAuthHandler = (req: NextApiRequest, res: NextApiResponse) => NextAuth(
 export const GET = (req: NextApiRequest, res: NextApiResponse) => nextAuthHandler(req, res)
 export const POST = (req: NextApiRequest, res: NextApiResponse) => nextAuthHandler(req, res)
 
-export default nextAuthHandler
+export default nextAuthHandler;
