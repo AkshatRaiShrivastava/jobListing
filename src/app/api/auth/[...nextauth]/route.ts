@@ -1,10 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
+import { NextApiRequest, NextApiResponse } from "next";
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
-  // Configure one or more authentication providers
+export default NextAuth({
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -12,16 +11,8 @@ export const authOptions = {
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
-    })
-    // ...add more providers here
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
   ],
-  
-}
-
-const nextAuthHandler = (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, authOptions)
-
-export const GET = (req: NextApiRequest, res: NextApiResponse) => nextAuthHandler(req, res)
-export const POST = (req: NextApiRequest, res: NextApiResponse) => nextAuthHandler(req, res)
-
-export default nextAuthHandler;
+  // ... other NextAuth configuration options
+});
