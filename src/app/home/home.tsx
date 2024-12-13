@@ -2,7 +2,6 @@ import axios from "axios";
 import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
 import { useRouter } from "next/navigation";
-import Post from "../post/post";
 import { number } from "zod";
 import { toast } from "sonner"
 import { Toaster } from "@/components/ui/sonner";
@@ -58,6 +57,8 @@ export default function Home() {
   };
 
   return (
+ 
+
     <main className="flex flex-col items-center px-25 py-10 ">
       <div className="w-full px-10 m-36">
         <form>
@@ -75,14 +76,14 @@ export default function Home() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 20 20"
-              >
+                >
                 <path
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
+                  />
               </svg>
             </div>
             <input
@@ -93,10 +94,10 @@ export default function Home() {
               className="lg:w-full w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline hover-outline-0"
               placeholder="Search jobs here..."
               required
-            />
+              />
             {/* <button className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Search
-            </button> */}
+              </button> */}
           </div>
         </form>
       </div>
@@ -107,8 +108,8 @@ export default function Home() {
       <div className="flex flex-wrap gap-5 w-full items-center justify-center">
         {posts.map((post: {index: Key | null | undefined; id:string;profile: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; desc: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; exp: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; techs: any[]; }, index: any) => (
           <div
-            className=" text-sm w-3/4 lg:w-auto cursor-pointer hover:scale-105 duration-500 p-10 flex-col rounded-3xl border border-neutral-500"
-            key={post.index}
+          className=" text-sm w-3/4 lg:w-auto cursor-pointer hover:scale-105 duration-500 p-10 flex-col rounded-3xl border border-neutral-500"
+          key={post.index}
           >
             <h3 className="text-3xl text-neutral-100 mb-5">{post.profile}</h3>
             <h4 className="text-neutral-300 mb-3">{post.desc}</h4>
@@ -128,6 +129,5 @@ export default function Home() {
       </div>
       <Toaster />
     </main>
-    
   );
 }
